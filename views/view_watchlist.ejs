@@ -1,0 +1,45 @@
+<%- include('header') %>
+ <div class="content-wrapper">
+    <div class="container-fluid">
+      <div class="row mt-3">
+        <div class="col-lg-6">
+              <h5 class="card-title">View watchlist</h5>
+              <%if(flash.success && flash.success.length > 0){%>
+                <div class="alert form-control" style="padding-left: 25px; padding-top: 8px;">
+                  <%=flash.success%>
+                </div>
+                <%}%>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Owner Name</th>
+                          <th scope="col">Watchlist movie </th>
+                          <th scope="col">Add watchlist Date</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% var no = 1; for(var i of data) { %>
+                          <tr>
+                            <td scope="col"><%= no++ %></td>
+                            <td scope="col"><%=i.userid.name %></td>
+                            <td scope="col"><%=i.movies%></td>
+                            <td scope="col">Date :<%=i.date %></td>
+                            <td scope="col"><a href="/watchlist/delete_watchlist/<%= i.id %>"><i class="fa fa-trash"></i></a>
+                              &nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp; <a href="/watchlist/update_watchlist/<%= i.id %>">
+                                <i class="fa fa-edit"></i></a></td>
+                        <% } %>
+                      </tbody>
+                    </table>
+            </div>
+          </div>
+        </div>
+      </div>
+		  <div class="overlay toggle-menu"></div>
+		
+    </div>
+    
+    </div>
+	
+<%- include('footer') %>

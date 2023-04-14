@@ -1,0 +1,75 @@
+<%- include('header') %>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+      <form class="search-bar d-flex">
+        <div>
+          <input type="text" class="form-control" name="search" style="height: 36px;" placeholder="Enter search keywords">
+        </div>
+        <div>
+          <button type="submit" class="btn btn-light" style="margin-left: 7px;">Search</button>
+        </div>
+      </form>
+
+      <div class="row mt-3">
+        <div class="col-lg-6">
+          <h5 class="card-title">View user</h5>
+          <%if(flash.success && flash.success.length > 0){%>
+            <div class="alert form-control" style="padding-left: 25px; padding-top: 8px;">
+              <%=flash.success%>
+            </div>
+            <%}%>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">mobile</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% var no=1; for(var i of data) { %>
+                <tr>
+                  <td scope="col">
+                    <%= no++ %>
+                  </td>
+                  <td scope="col">
+                    <%= i.name %>
+                  </td>
+                  <td scope="col">
+                    <%= i.email %>
+                  </td>
+                  <td scope="col">
+                    <%= i.mobile %>
+                  </td>
+                  <td scope="col"><a href="/delete_user/<%= i.id %>"><i class="fa fa-trash"></i></a>&nbsp;
+                    |&nbsp;&nbsp;| &nbsp;<a href="/update_user/<%= i.id %>"><i class="fa fa-edit"></i></a></th>
+                    <% } %>
+            </tbody>
+          </table>
+
+          <tr>
+            <td>
+              <a href="?page=<%= previous%>&search=<%= searchdata %>" class="btn btn-light">previous</a>
+              <a href="?page=<%= current %>&search=<%= searchdata %>" class="btn btn-light">
+                <%=current%>
+              </a>
+              <a href="?page=<%= next%>&search=<%= searchdata %>" class="btn btn-light">next</a>
+            </td>
+
+          </tr>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay toggle-menu"></div>
+  <!--end overlay-->
+
+  </div>
+  <!-- End container-fluid-->
+
+  </div>
+
+  <%- include('footer') %>

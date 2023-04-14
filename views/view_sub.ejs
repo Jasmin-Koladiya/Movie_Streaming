@@ -1,0 +1,62 @@
+<%- include('header') %>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+      <div class="row mt-3">
+        <div class="col-lg-6">
+          <!-- <div class="card"> -->
+          <!-- <div class="card-body"> -->
+          <h5 class="card-title">View subscription</h5>
+          <%if(flash.success && flash.success.length > 0){%>
+            <div class="alert form-control" style="padding-left: 25px; padding-top: 8px;">
+              <%=flash.success%>
+            </div>
+            <%}%>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">plan</th>
+                <th scope="col">start date</th>
+                <th scope="col">ending date</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% var no=1; for(var i of data) { %>
+                <tr>
+                  <td scope="col">
+                    <%= no++ %>
+                  </td>
+                  <td scope="col">
+                    <%= i.userid.name %>
+                  </td>
+                  <td scope="col">
+                    <%= i.planid.plan_name %>
+                  </td>
+                  <td scope="col">
+                    <%= i.sdate %>
+                  </td>
+                  <td scope="col">
+                    <%= i.edate %>
+                  </td>
+                  <td scope="col"><a href="/subscription/delete_sub/<%= i.id %>"><i class="fa fa-trash"></i></a> || <a
+                    href="/subscription/update_sub/<%= i.id %>"><i class="fa fa-edit"></i></a></th>
+                 
+                    <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="overlay toggle-menu"></div>
+  <!--end overlay-->
+
+  </div>
+  <!-- End container-fluid-->
+
+  </div>
+
+  <%- include('footer') %>

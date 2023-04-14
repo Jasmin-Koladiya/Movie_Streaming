@@ -1,0 +1,62 @@
+<%- include('header') %>
+
+<!--End topbar header-->
+<div class="clearfix"></div>
+	
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+    <div class="row mt-3">
+      <div class="col-lg-6">
+         <div class="card">
+           <div class="card-body">
+           <div class="card-title">Update movie</div>
+           <hr>
+            <form  method="post" action="/movie/editData"  enctype="multipart/form-data">
+              <input type="hidden" value="<%= data.id %>" name="id">
+           <div class="form-group">
+            <label for="input-1">movie Name</label>
+            <input type="text"name="movie_name" class="form-control" id="movie_name" value="<%= data.movie_name%>" >
+           </div>
+           <div class="form-group">
+            <label for="input-1">movie type</label>
+            <select class="form-control" name="type" id="type">
+              <option value="Movie" <% if (data.type === 'Movie') { %>selected<% } %>>Movie</option>
+              <option value="series" <% if (data.type === 'series') { %>selected<% } %>>Series</option>
+            </select>
+            
+           </div>
+           <div class="form-group">
+            <label for="input-1">movie description</label>
+            <textarea name="description" id="description" class="form-control" cols="10" rows="10" value="" ><%= data.description%></textarea>
+           </div>
+           <div class="form-group">
+            <label for="input-1">movie Poster</label>
+            <input type="file" name="avatar" id="avatar" class="form-control">
+            <img src="<%= data.avatar %>" height="100">
+           </div>
+           <div class="form-group">
+            <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Update Data</button>
+          </div>
+          </form>
+         </div>
+         </div>
+      </div>
+
+      
+    </div><!--End Row-->
+
+	<!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+    
+   </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+	
+	<!--Start footer-->
+    <%- include('footer') %>

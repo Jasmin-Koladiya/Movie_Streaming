@@ -1,0 +1,57 @@
+<%- include('header') %>
+ <div class="content-wrapper">
+    <div class="container-fluid">
+     
+      <div class="row mt-3">
+        <div class="col-lg-6">
+          <!-- <div class="card"> -->
+            <!-- <div class="card-body"> -->
+              <h5 class="card-title">View movie</h5>
+              <%if(flash.success && flash.success.length > 0){%>
+                <div class="alert form-control" style="padding-left: 25px; padding-top: 8px;">
+                  <%=flash.success%>
+                </div>
+                <%}%>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">movie Name</th>
+                          <th scope="col">type</th>
+                          <th scope="col">description</th>
+                          <th scope="col" class="text-center">movie Poster</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% var no = 1; for(var i of data) { %>
+                          <tr>
+                            <td scope="col"><%= no++ %></td>
+                            <td scope="col"><%=i.movie_name%></td>
+                            <td scope="col"><%=i.type%></td>
+                            <td scope="col"><%=i.description%></td>
+                            <td scope="col" class="text-center"><img src="<%= i.avatar %>" height="100" ></td>
+                            <td scope="col"><a href="/movie/delete_movie/<%= i.id %>"><i class="fa fa-trash"></i></a>
+                              &nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp; <a href="/movie/updateData/<%= i.id %>">
+                                <i class="fa fa-edit"></i></a></td>
+                        <% } %>
+                      </tbody>
+                    </table>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+
+
+
+	  
+	  <!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+    
+    </div>
+	
+<%- include('footer') %>

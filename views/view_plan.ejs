@@ -1,0 +1,115 @@
+<%- include('header') %>
+ <div class="content-wrapper">
+    <div class="container-fluid">
+           <form class="search-bar d-flex" action="/plan/searchingData" method="post" >
+        <div>
+          <input type="text" class="form-control" name="search" style="height: 36px;" placeholder="Enter search keywords">
+        </div>
+        <div>
+          <button type="submit" class="btn btn-light" style="margin-left: 7px;">Search</button>
+        </div>
+      </form>
+      <div class="row mt-3">
+        <%if(flash.success && flash.success.length > 0){%>
+          <div class="alert form-control" style="padding-left: 25px; padding-top: 8px;">
+            <%=flash.success%>
+          </div>
+          <%}%>
+        <div class="col-lg-6">
+              <h5 class="card-title">Active Plans</h5>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Plan Name</th>
+                          <th scope="col">price</th>
+                          <th scope="col">status</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% var no=1; for(var c of activedata) { %>
+                          <tr>
+                            <th scope="col">
+                              <%= no++ %>
+                            </th>
+                            <th scope="col">
+                              <%= c.plan_name %>
+                            </th>
+                            <th scope="col">
+                              <%= c.price %>
+                            </th>
+                            <th>
+                              <% if(c.isactive){%>
+                                <a href="/plan/deactivestatus/<%= c.id %>">Active</a>
+                                <%} else {%>
+                                  <a href="/plan/activestatus/<%= c.id %>">deactive</a>
+                                  <%}%>
+                            </th>
+                            <th scope="col"><a href="/plan/delete_plan/<%= c.id %>"><i class="fa fa-trash"></i></a>
+                              &nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp; <a href="/plan/update_plan/<%= c.id %>">
+                                <i class="fa fa-edit"></i></a></th>
+                            </tr>
+                          </tr>
+                          <% } %>
+                      </tbody>
+
+                    </table>
+                    <hr>
+                    <hr>
+                    <h5 class="card-title">Deactiva  Plans</h5>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Plan Name</th>
+                              <th scope="col">price</th>
+                              <th scope="col">status</th>
+                              <th scope="col">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% var no=1; for(var c of deactivedata) { %>
+                              <tr>
+                                <th scope="col">
+                                  <%= no++ %>
+                                </th>
+                                <th scope="col">
+                                  <%= c.plan_name %>
+                                </th>
+                                <th scope="col">
+                                  <%= c.price %>
+                                </th>
+                                <th>
+                                  <% if(c.isactive){%>
+                                    <a href="/plan/deactivestatus/<%= c.id %>">Active</a>
+                                    <%} else {%>
+                                      <a href="/plan/activestatus/<%= c.id %>">deactive</a>
+                                      <%}%>
+                                </th>
+                                <th scope="col"><a href="/plan/delete_plan/<%= c.id %>"><i class="fa fa-trash"></i></a>
+                                  &nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp; <a href="/plan/update_plan/<%= c.id %>">
+                                    <i class="fa fa-edit"></i></a></th>
+                                </tr>
+                              </tr>
+                              <% } %>
+                          </tbody>
+                        </table>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+
+
+
+	  
+	  <!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+    
+    </div>
+	
+<%- include('footer') %>

@@ -1,0 +1,76 @@
+<%- include('header') %>
+
+  <!--End topbar header-->
+  <div class="clearfix"></div>
+
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+      <div class="row mt-3">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Add subscription </div>
+              <%if(flash.success && flash.success.length > 0){%>
+                <div class="alert form-control" style="padding-left: 25px; padding-top: 8px;">
+                  <%=flash.success%>
+                </div>
+                <%}%>
+              <hr>
+              <form method="post" action="/subscription/insertData">
+                <div class="form-group">
+                  <label for="input-2">Select Plan</label>
+                  <select class="form-control" name="planid" id="planid" onchange="getsubData()">
+                    <option value=" ">-- select plan--</option>
+                    <% for (var c of plan){%>
+                      <option value="<%=c.id %>">
+                        <%=c.plan_name%>
+                      </option>
+                      <%}%>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="input-2">Select User</label>
+                  <select class="form-control " name="userid" id="userid">
+                    <option value=" ">-- select User --</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="input-2">Select Starting Date</label>
+                  <input type="date" name="sdate" class="form-control" id="sdate">
+                </div>
+                <div class="form-group">
+                  <label for="input-2">Select Ending Date</label>
+                  <input type="date" name="edate" class="form-control" id="edate">
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i>ADD Data</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overlay toggle-menu"></div>
+    </div>
+  </div>
+  <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script>
+    function getsubData() {
+      var planid = document.getElementById('planid').value;
+
+      $.ajax({
+        url: '/subscription/subdata',
+        type: 'post',
+        data: {
+          'planid': planid
+        },
+        success: function (res) {
+          console.log(res)
+          $('#userid').html(res);
+        }
+      })
+    }
+  </script>
+  <%- include('footer') %>

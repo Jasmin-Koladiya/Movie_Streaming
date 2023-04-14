@@ -1,0 +1,74 @@
+<%- include('header') %>
+
+<!--End topbar header-->
+<div class="clearfix"></div>
+	
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+    <div class="row mt-3">
+      <div class="col-lg-6">
+         <div class="card">
+           <div class="card-body">
+           <div class="card-title">User Form</div>
+           <%if(flash.success && flash.success.length > 0){%>
+            <div class="alert form-control" style="padding-left: 25px; padding-top: 8px;">
+              <%=flash.success%>
+            </div>
+            <%}%>
+           <hr>
+            <form  method="post" action="/insertData" >
+           <div class="form-group">
+            <label for="input-1">First Name</label>
+            <input type="text"name="fname" class="form-control" id="fname" placeholder="Enter Your First Name">
+           </div>
+           <div class="form-group">
+            <label for="input-1">Last Name</label>
+            <input type="text" name="lname" class="form-control" id="lname" placeholder="Enter Your Last Name">
+           </div>
+           <div class="form-group">
+            <label for="input-2">Email</label>
+            <input type="text"name="email" class="form-control" id="email" placeholder="Enter Your Email Address">
+           </div>
+           <div class="form-group">
+            <label for="input-2">Mobile Number</label>
+            <input type="text" name="mobile" class="form-control" id="Mobile" placeholder="Enter Your Mobile Number">
+           </div>
+           <div class="form-group">
+            <label for="input-2">Plan</label>
+            <select class="form-control" name="plan" id="plan">
+              <option value=" ">-- select plan--</option>
+              <%for (var c of plan){%>
+                <option value="<%=c.id %>"><%=c.plan_name%></option>
+                <%}%>
+            </select>
+            </div>
+           <div class="form-group">
+            <label for="input-4">Password</label>
+            <input type="text"name="password" class="form-control" id="password" placeholder="Enter Password">
+           </div>
+           <div class="form-group">
+            <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Add Data</button>
+          </div>
+          </form>
+         </div>
+         </div>
+      </div>
+
+      
+    </div><!--End Row-->
+
+	<!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+    
+   </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+	
+	<!--Start footer-->
+    <%- include('footer') %>

@@ -1,0 +1,49 @@
+<%- include('header') %>
+
+<!--End topbar header-->
+<div class="clearfix"></div>
+	
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+    <div class="row mt-3">
+      <div class="col-lg-6">
+         <div class="card">
+           <div class="card-body">
+           <div class="card-title">Update Plan</div>
+           <hr>
+            <form  method="post" action="/plan/edite_plan">
+            <input type="hidden" value="<%= data.id %>" name="id">
+           <div class="form-group">
+            <label for="input-1">update plan </label>
+            <input type="text"name="plan_name" class="form-control" id="plan_name" placeholder="Enter Your First plan Name" value="<%= data.plan_name%>">
+           </div>
+           <div class="form-group">
+            <label for="input-1">update plan price </label>
+            <input type="text"name="price" class="form-control" id="price" placeholder="Enter Your First plan Name" value="<%= data.price%>">
+           </div>
+           <div class="form-group">
+            <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i> Update Data</button>
+          </div>
+          </form>
+         </div>
+         </div>
+      </div>
+
+      
+    </div><!--End Row-->
+
+	<!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+
+    </div>
+    <!-- End container-fluid-->
+    
+   </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+	
+	<!--Start footer-->
+    <%- include('footer') %>
